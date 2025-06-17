@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,22 +35,82 @@
               'inter': ['Inter', 'sans-serif'],
             },
             animation: {
-              'fade-in': 'fadeIn 0.6s ease-out',
-              'slide-up': 'slideUp 0.6s ease-out',
+              'fade-in': 'fadeIn 0.8s ease-out',
+              'slide-up': 'slideUp 0.8s ease-out',
+              'slide-down': 'slideDown 0.8s ease-out',
+              'slide-left': 'slideLeft 0.8s ease-out',
+              'slide-right': 'slideRight 0.8s ease-out',
               'float': 'float 6s ease-in-out infinite',
+              'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+              'bounce-slow': 'bounce 2s infinite',
+              'spin-slow': 'spin 3s linear infinite',
+              'wiggle': 'wiggle 1s ease-in-out infinite',
+              'gradient-x': 'gradient-x 15s ease infinite',
+              'gradient-y': 'gradient-y 15s ease infinite',
+              'gradient-xy': 'gradient-xy 15s ease infinite',
             },
             keyframes: {
               fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' }
               },
               slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '0%': { opacity: '0', transform: 'translateY(50px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              slideDown: {
+                '0%': { opacity: '0', transform: 'translateY(-50px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              slideLeft: {
+                '0%': { opacity: '0', transform: 'translateX(50px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              slideRight: {
+                '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
               },
               float: {
                 '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-10px)' }
+                '50%': { transform: 'translateY(-15px)' }
+              },
+              pulseGlow: {
+                '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' }
+              },
+              wiggle: {
+                '0%, 100%': { transform: 'rotate(-3deg)' },
+                '50%': { transform: 'rotate(3deg)' }
+              },
+              'gradient-x': {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center'
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center'
+                }
+              },
+              'gradient-y': {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'center top'
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'center bottom'
+                }
+              },
+              'gradient-xy': {
+                '0%, 100%': {
+                  'background-size': '400% 400%',
+                  'background-position': 'left center'
+                },
+                '50%': {
+                  'background-size': '400% 400%',
+                  'background-position': 'right center'
+                }
               }
             }
           }
@@ -68,29 +129,40 @@
       }
       
       .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+        background-size: 400% 400%;
+        animation: gradient-xy 15s ease infinite;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background-size: 200% 200%;
+        animation: gradient-x 3s ease infinite;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       
       .card-hover {
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       
       .card-hover:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
       }
       
       .skill-item {
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       
       .skill-item:hover {
-        transform: scale(1.05);
+        transform: scale(1.1) rotate(5deg);
       }
       
       .mobile-menu {
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       
       .mobile-menu.active {
@@ -100,10 +172,20 @@
       .smooth-scroll {
         scroll-behavior: smooth;
       }
+      
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .glow-effect {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+      }
     </style>
   </head>
 
-  <body class="bg-gray-900 text-white smooth-scroll">
+  <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white smooth-scroll">
     <div id="root"></div>
     
     <script type="text/babel">
@@ -150,10 +232,10 @@
         ];
         
         return (
-          <nav className="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-700">
+          <nav className="fixed top-0 w-full glass-effect z-50 border-b border-purple-500/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center py-4">
-                <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
+                <div className="text-2xl font-bold gradient-text animate-pulse-glow">
                   MHN
                 </div>
                 
@@ -163,8 +245,8 @@
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`hover:text-blue-400 transition-colors ${
-                        activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                      className={`hover:text-purple-400 transition-all duration-300 transform hover:scale-110 ${
+                        activeSection === item.id ? 'text-purple-400 font-semibold' : 'text-gray-300'
                       }`}
                     >
                       {item.label}
@@ -174,27 +256,27 @@
                 
                 {/* Mobile Menu Button */}
                 <button
-                  className="md:hidden"
+                  className="md:hidden transform transition-transform hover:scale-110"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-                    <span className={`block h-0.5 w-6 bg-white transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                    <span className={`block h-0.5 w-6 bg-white transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                    <span className={`block h-0.5 w-6 bg-white transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                    <span className={`block h-0.5 w-6 bg-purple-400 transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                    <span className={`block h-0.5 w-6 bg-purple-400 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`block h-0.5 w-6 bg-purple-400 transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
                   </div>
                 </button>
               </div>
             </div>
             
             {/* Mobile Menu */}
-            <div className={`md:hidden mobile-menu ${isMenuOpen ? 'active' : ''} fixed top-0 right-0 h-full w-64 bg-gray-800 shadow-xl`}>
+            <div className={`md:hidden mobile-menu ${isMenuOpen ? 'active' : ''} fixed top-0 right-0 h-full w-64 glass-effect shadow-xl`}>
               <div className="flex flex-col pt-20 px-6 space-y-6">
                 {navItems.map(item => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`text-left hover:text-blue-400 transition-colors ${
-                      activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                    className={`text-left hover:text-purple-400 transition-all duration-300 transform hover:translate-x-2 ${
+                      activeSection === item.id ? 'text-purple-400 font-semibold' : 'text-gray-300'
                     }`}
                   >
                     {item.label}
@@ -221,24 +303,32 @@
         };
         
         return (
-          <section id="home" className="min-h-screen flex items-center justify-center gradient-bg">
-            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <section id="home" className="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+              <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
+              <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '4s'}}></div>
+            </div>
+            
+            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="animate-fade-in">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text animate-slide-down">
                   Muhammad Hamza Naeem
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-blue-100">
+                <p className="text-xl md:text-2xl mb-8 text-purple-200 animate-slide-up">
                   Data Scientist | Web & App Developer
                 </p>
-                <p className="text-lg mb-12 text-blue-50 max-w-2xl mx-auto">
+                <p className="text-lg mb-12 text-purple-100 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: '0.5s'}}>
                   Turning data into insights and building innovative digital solutions with machine learning and modern technologies
                 </p>
                 <button
                   onClick={scrollToProjects}
-                  className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg glow-effect animate-bounce-slow"
+                  style={{animationDelay: '1s'}}
                 >
                   View My Work
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </button>
@@ -251,16 +341,16 @@
       // About Section Component
       const AboutSection = () => {
         return (
-          <section id="about" className="py-20 bg-gray-800">
+          <section id="about" className="py-20 bg-gradient-to-br from-slate-800 to-purple-800">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
-                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">About Me</h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
               </div>
               
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="animate-slide-up">
-                  <h3 className="text-2xl font-semibold mb-6 text-blue-400">
+                <div className="animate-slide-right">
+                  <h3 className="text-2xl font-semibold mb-6 text-purple-400">
                     From Data Science to Digital Innovation
                   </h3>
                   <p className="text-gray-300 mb-6 leading-relaxed">
@@ -273,34 +363,29 @@
                     impactful digital experiences that solve real-world problems.
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    {['Python', 'React', 'Machine Learning', 'Node.js', 'TensorFlow', 'TypeScript'].map(tech => (
-                      <span key={tech} className="px-4 py-2 bg-gray-700 rounded-full text-sm">
+                    {['Python', 'React', 'Machine Learning', 'Node.js', 'TensorFlow', 'TypeScript'].map((tech, index) => (
+                      <span key={tech} className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-sm animate-fade-in transform hover:scale-110 transition-all duration-300" style={{animationDelay: `${index * 0.1}s`}}>
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 
-                <div className="animate-fade-in">
-                  <div className="bg-gray-700 rounded-lg p-8 shadow-xl">
-                    <h4 className="text-xl font-semibold mb-4 text-blue-400">Quick Facts</h4>
+                <div className="animate-slide-left">
+                  <div className="glass-effect rounded-lg p-8 shadow-xl glow-effect">
+                    <h4 className="text-xl font-semibold mb-4 text-purple-400">Quick Facts</h4>
                     <ul className="space-y-3 text-gray-300">
-                      <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                        Data Science expertise
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                        Web & App development skills
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                        Machine Learning specialist
-                      </li>
-                      <li className="flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                        Full-stack capabilities
-                      </li>
+                      {[
+                        'Data Science expertise',
+                        'Web & App development skills',
+                        'Machine Learning specialist',
+                        'Full-stack capabilities'
+                      ].map((fact, index) => (
+                        <li key={fact} className="flex items-center animate-slide-up" style={{animationDelay: `${index * 0.2}s`}}>
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></span>
+                          {fact}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -364,27 +449,28 @@
           : projects.filter(project => project.category === filter);
         
         return (
-          <section id="projects" className="py-20 bg-gray-900">
+          <section id="projects" className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">My Projects</h2>
-                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">My Projects</h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
                   Here are some of my recent projects that showcase my skills and experience
                 </p>
               </div>
               
               {/* Filter Buttons */}
               <div className="flex flex-wrap justify-center gap-4 mb-12">
-                {categories.map(category => (
+                {categories.map((category, index) => (
                   <button
                     key={category}
                     onClick={() => setFilter(category)}
-                    className={`px-6 py-3 rounded-full transition-all ${
+                    className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 animate-slide-up ${
                       filter === category
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white glow-effect'
+                        : 'glass-effect text-gray-300 hover:bg-purple-600/20'
                     }`}
+                    style={{animationDelay: `${index * 0.1}s`}}
                   >
                     {category}
                   </button>
@@ -393,15 +479,15 @@
               
               {/* Projects Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredProjects.map(project => (
-                  <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-xl card-hover">
+                {filteredProjects.map((project, index) => (
+                  <div key={project.id} className="glass-effect rounded-lg overflow-hidden shadow-xl card-hover animate-slide-up" style={{animationDelay: `${index * 0.2}s`}}>
                     <img 
                       src={project.image} 
                       alt={project.title}
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 text-blue-400">
+                      <h3 className="text-xl font-semibold mb-3 text-purple-400">
                         {project.title}
                       </h3>
                       <p className="text-gray-300 mb-4 leading-relaxed">
@@ -409,7 +495,7 @@
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tech.map(tech => (
-                          <span key={tech} className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                          <span key={tech} className="px-3 py-1 bg-gradient-to-r from-purple-600/50 to-blue-600/50 rounded-full text-sm">
                             {tech}
                           </span>
                         ))}
@@ -417,13 +503,13 @@
                       <div className="flex gap-4">
                         <a 
                           href={project.demo}
-                          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex-1 text-center"
+                          className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all flex-1 text-center transform hover:scale-105"
                         >
                           Live Demo
                         </a>
                         <a 
                           href={project.github}
-                          className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors flex-1 text-center"
+                          className="px-4 py-2 glass-effect hover:bg-purple-600/20 rounded-lg transition-all flex-1 text-center transform hover:scale-105"
                         >
                           GitHub
                         </a>
@@ -470,32 +556,32 @@
         ];
         
         return (
-          <section id="skills" className="py-20 bg-gray-800">
+          <section id="skills" className="py-20 bg-gradient-to-br from-slate-800 to-purple-800">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
-                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">Skills & Expertise</h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
                   Technologies and tools I use to transform data into insights and build innovative applications
                 </p>
               </div>
               
               <div className="grid md:grid-cols-3 gap-8">
-                {skillCategories.map(category => (
-                  <div key={category.category} className="bg-gray-700 rounded-lg p-6 shadow-xl">
-                    <h3 className="text-2xl font-semibold mb-6 text-blue-400 text-center">
+                {skillCategories.map((category, catIndex) => (
+                  <div key={category.category} className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: `${catIndex * 0.2}s`}}>
+                    <h3 className="text-2xl font-semibold mb-6 text-purple-400 text-center">
                       {category.category}
                     </h3>
                     <div className="space-y-4">
-                      {category.skills.map(skill => (
-                        <div key={skill.name} className="skill-item">
+                      {category.skills.map((skill, skillIndex) => (
+                        <div key={skill.name} className="skill-item animate-fade-in" style={{animationDelay: `${(catIndex * 0.2) + (skillIndex * 0.1)}s`}}>
                           <div className="flex justify-between mb-2">
                             <span className="text-gray-300">{skill.name}</span>
-                            <span className="text-blue-400">{skill.level}%</span>
+                            <span className="text-purple-400">{skill.level}%</span>
                           </div>
-                          <div className="w-full bg-gray-600 rounded-full h-3">
+                          <div className="w-full bg-gray-600/50 rounded-full h-3">
                             <div 
-                              className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000"
+                              className="bg-gradient-to-r from-purple-500 to-blue-500 h-3 rounded-full transition-all duration-1000 animate-pulse-glow"
                               style={{ width: `${skill.level}%` }}
                             ></div>
                           </div>
@@ -535,61 +621,62 @@
           { name: 'GitHub', url: 'https://github.com', icon: '🐙' },
           { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' },
           { name: 'Kaggle', url: 'https://kaggle.com', icon: '📊' },
-          { name: 'Email', url: 'mailto:hamza@example.com', icon: '📧' }
+          { name: 'Email', url: 'mailto:hamzanaeem832@gmail.com', icon: '📧' }
         ];
         
         return (
-          <section id="contact" className="py-20 bg-gray-900">
+          <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
-                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">Get In Touch</h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
                   Let's collaborate on data science projects or discuss innovative app development ideas
                 </p>
               </div>
               
               <div className="grid md:grid-cols-2 gap-12">
                 {/* Contact Form */}
-                <div className="bg-gray-800 rounded-lg p-8 shadow-xl">
-                  <h3 className="text-2xl font-semibold mb-6 text-blue-400">Send a Message</h3>
+                <div className="glass-effect rounded-lg p-8 shadow-xl glow-effect animate-slide-right">
+                  <h3 className="text-2xl font-semibold mb-6 text-purple-400">Send a Message</h3>
                   <div className="space-y-6">
-                    <div>
+                    <div className="animate-slide-up" style={{animationDelay: '0.1s'}}>
                       <label className="block text-gray-300 mb-2">Name</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white transition-all duration-300"
                         placeholder="Your name"
                       />
                     </div>
-                    <div>
+                    <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
                       <label className="block text-gray-300 mb-2">Email</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white transition-all duration-300"
                         placeholder="your.email@example.com"
                       />
                     </div>
-                    <div>
+                    <div className="animate-slide-up" style={{animationDelay: '0.3s'}}>
                       <label className="block text-gray-300 mb-2">Message</label>
                       <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         rows="5"
-                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white resize-none"
+                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white resize-none transition-all duration-300"
                         placeholder="Tell me about your project..."
                       ></textarea>
                     </div>
                     <button
                       onClick={handleSubmit}
-                      className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors font-semibold"
+                      className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all font-semibold transform hover:scale-105 glow-effect animate-slide-up"
+                      style={{animationDelay: '0.4s'}}
                     >
                       Send Message
                     </button>
@@ -597,38 +684,39 @@
                 </div>
                 
                 {/* Contact Info */}
-                <div className="space-y-8">
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-400">Let's Connect</h3>
+                <div className="space-y-8 animate-slide-left">
+                  <div className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: '0.1s'}}>
+                    <h3 className="text-xl font-semibold mb-4 text-purple-400">Let's Connect</h3>
                     <p className="text-gray-300 mb-6">
                       Whether you're interested in data science collaboration, web development projects, 
                       or just want to discuss the latest in machine learning and app development.
                     </p>
                     <div className="space-y-3">
-                      <div className="flex items-center">
+                      <div className="flex items-center animate-slide-right" style={{animationDelay: '0.2s'}}>
                         <span className="text-2xl mr-3">📍</span>
                         <span className="text-gray-300">Pakistan</span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex items-center animate-slide-right" style={{animationDelay: '0.3s'}}>
                         <span className="text-2xl mr-3">📧</span>
-                        <a href="mailto:hamza@example.com" className="text-blue-400 hover:text-blue-300">
-                          hamza@example.com
+                        <a href="mailto:hamzanaeem832@gmail.com" className="text-purple-400 hover:text-purple-300 transition-colors">
+                          hamzanaeem832@gmail.com
                         </a>
                       </div>
                     </div>
                   </div>
                   
                   {/* Social Links */}
-                  <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-400">Follow Me</h3>
+                  <div className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: '0.4s'}}>
+                    <h3 className="text-xl font-semibold mb-4 text-purple-400">Follow Me</h3>
                     <div className="grid grid-cols-2 gap-4">
-                      {socialLinks.map(link => (
+                      {socialLinks.map((link, index) => (
                         <a
                           key={link.name}
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
+                          className="flex items-center p-3 glass-effect rounded-lg hover:bg-purple-600/20 transition-all transform hover:scale-105 animate-slide-up"
+                          style={{animationDelay: `${0.5 + (index * 0.1)}s`}}
                         >
                           <span className="text-2xl mr-3">{link.icon}</span>
                           <span className="text-gray-300">{link.name}</span>
@@ -646,22 +734,22 @@
       // Footer Component
       const Footer = () => {
         return (
-          <footer className="py-8 bg-gray-800 border-t border-gray-700">
+          <footer className="py-8 bg-gradient-to-r from-slate-800 to-purple-800 border-t border-purple-500/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col md:flex-row justify-between items-center">
-                <div className="text-gray-400 mb-4 md:mb-0">
+                <div className="text-gray-400 mb-4 md:mb-0 animate-fade-in">
                   © 2024 Muhammad Hamza Naeem. All rights reserved.
                 </div>
                 <div className="flex space-x-6">
-                  <a href="https://github.com" className="text-gray-400 hover:text-white transition-colors">
-                    GitHub
-                  </a>
-                  <a href="https://linkedin.com" className="text-gray-400 hover:text-white transition-colors">
-                    LinkedIn
-                  </a>
-                  <a href="https://kaggle.com" className="text-gray-400 hover:text-white transition-colors">
-                    Kaggle
-                  </a>
+                  {[
+                    { name: 'GitHub', url: 'https://github.com' },
+                    { name: 'LinkedIn', url: 'https://linkedin.com' },
+                    { name: 'Kaggle', url: 'https://kaggle.com' }
+                  ].map((link, index) => (
+                    <a key={link.name} href={link.url} className="text-gray-400 hover:text-purple-400 transition-all duration-300 transform hover:scale-110 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
+                      {link.name}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
