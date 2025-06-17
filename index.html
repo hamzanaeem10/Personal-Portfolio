@@ -23,7 +23,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,84 +33,59 @@
           extend: {
             fontFamily: {
               'inter': ['Inter', 'sans-serif'],
+              'space': ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              'dark': '#0a0a0a',
+              'dark-secondary': '#111111',
+              'accent': '#3b82f6',
+              'accent-hover': '#2563eb',
+              'text-primary': '#ffffff',
+              'text-secondary': '#a1a1aa',
+              'border': '#27272a',
             },
             animation: {
-              'fade-in': 'fadeIn 0.8s ease-out',
-              'slide-up': 'slideUp 0.8s ease-out',
-              'slide-down': 'slideDown 0.8s ease-out',
-              'slide-left': 'slideLeft 0.8s ease-out',
-              'slide-right': 'slideRight 0.8s ease-out',
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.6s ease-out',
+              'slide-down': 'slideDown 0.6s ease-out',
+              'slide-left': 'slideLeft 0.6s ease-out',
+              'slide-right': 'slideRight 0.6s ease-out',
               'float': 'float 6s ease-in-out infinite',
               'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
-              'bounce-slow': 'bounce 2s infinite',
-              'spin-slow': 'spin 3s linear infinite',
-              'wiggle': 'wiggle 1s ease-in-out infinite',
-              'gradient-x': 'gradient-x 15s ease infinite',
-              'gradient-y': 'gradient-y 15s ease infinite',
-              'gradient-xy': 'gradient-xy 15s ease infinite',
+              'gradient-shift': 'gradientShift 8s ease-in-out infinite',
             },
             keyframes: {
               fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' }
               },
               slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(50px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' }
               },
               slideDown: {
-                '0%': { opacity: '0', transform: 'translateY(-50px)' },
+                '0%': { opacity: '0', transform: 'translateY(-30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' }
               },
               slideLeft: {
-                '0%': { opacity: '0', transform: 'translateX(50px)' },
+                '0%': { opacity: '0', transform: 'translateX(30px)' },
                 '100%': { opacity: '1', transform: 'translateX(0)' }
               },
               slideRight: {
-                '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
                 '100%': { opacity: '1', transform: 'translateX(0)' }
               },
               float: {
                 '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-15px)' }
+                '50%': { transform: 'translateY(-10px)' }
               },
               pulseGlow: {
-                '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-                '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' }
+                '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' },
+                '50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' }
               },
-              wiggle: {
-                '0%, 100%': { transform: 'rotate(-3deg)' },
-                '50%': { transform: 'rotate(3deg)' }
-              },
-              'gradient-x': {
-                '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'left center'
-                },
-                '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'right center'
-                }
-              },
-              'gradient-y': {
-                '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'center top'
-                },
-                '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'center bottom'
-                }
-              },
-              'gradient-xy': {
-                '0%, 100%': {
-                  'background-size': '400% 400%',
-                  'background-position': 'left center'
-                },
-                '50%': {
-                  'background-size': '400% 400%',
-                  'background-position': 'right center'
-                }
+              gradientShift: {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' }
               }
             }
           }
@@ -126,66 +101,72 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
-      }
-      
-      .gradient-bg {
-        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
-        background-size: 400% 400%;
-        animation: gradient-xy 15s ease infinite;
+        background: #0a0a0a;
       }
       
       .gradient-text {
-        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
         background-size: 200% 200%;
-        animation: gradient-x 3s ease infinite;
+        animation: gradientShift 8s ease-in-out infinite;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       
       .card-hover {
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #27272a;
       }
       
       .card-hover:hover {
-        transform: translateY(-12px) scale(1.02);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        transform: translateY(-8px);
+        border-color: #3b82f6;
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
       }
       
-      .skill-item {
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
       }
       
-      .skill-item:hover {
-        transform: scale(1.1) rotate(5deg);
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #3b82f6;
+        transition: width 0.3s ease;
       }
       
-      .mobile-menu {
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      .nav-link:hover:after,
+      .nav-link.active:after {
+        width: 100%;
       }
       
-      .mobile-menu.active {
-        transform: translateX(0);
+      .skill-tag {
+        transition: all 0.3s ease;
       }
       
-      .smooth-scroll {
-        scroll-behavior: smooth;
+      .skill-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
       }
       
-      .glass-effect {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+      .section-padding {
+        padding: 5rem 0;
       }
       
-      .glow-effect {
-        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+      @media (max-width: 768px) {
+        .section-padding {
+          padding: 3rem 0;
+        }
       }
     </style>
   </head>
 
-  <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white smooth-scroll">
+  <body class="bg-dark text-text-primary">
     <div id="root"></div>
     
     <script type="text/babel">
@@ -232,11 +213,11 @@
         ];
         
         return (
-          <nav className="fixed top-0 w-full glass-effect z-50 border-b border-purple-500/20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="fixed top-0 w-full bg-dark/80 backdrop-blur-xl z-50 border-b border-border">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="flex justify-between items-center py-4">
-                <div className="text-2xl font-bold gradient-text animate-pulse-glow">
-                  MHN
+                <div className="text-xl font-space font-bold text-text-primary">
+                  Muhammad Hamza
                 </div>
                 
                 {/* Desktop Menu */}
@@ -245,8 +226,8 @@
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`hover:text-purple-400 transition-all duration-300 transform hover:scale-110 ${
-                        activeSection === item.id ? 'text-purple-400 font-semibold' : 'text-gray-300'
+                      className={`nav-link text-sm font-medium ${
+                        activeSection === item.id ? 'text-accent active' : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
                       {item.label}
@@ -256,41 +237,35 @@
                 
                 {/* Mobile Menu Button */}
                 <button
-                  className="md:hidden transform transition-transform hover:scale-110"
+                  className="md:hidden p-2"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                  <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-                    <span className={`block h-0.5 w-6 bg-purple-400 transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                    <span className={`block h-0.5 w-6 bg-purple-400 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                    <span className={`block h-0.5 w-6 bg-purple-400 transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                  <div className="w-5 h-5 flex flex-col justify-center space-y-1">
+                    <span className={`block h-0.5 w-5 bg-text-primary transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                    <span className={`block h-0.5 w-5 bg-text-primary transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`block h-0.5 w-5 bg-text-primary transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
                   </div>
                 </button>
               </div>
             </div>
             
             {/* Mobile Menu */}
-            <div className={`md:hidden mobile-menu ${isMenuOpen ? 'active' : ''} fixed top-0 right-0 h-full w-64 glass-effect shadow-xl`}>
-              <div className="flex flex-col pt-20 px-6 space-y-6">
-                {navItems.map(item => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`text-left hover:text-purple-400 transition-all duration-300 transform hover:translate-x-2 ${
-                      activeSection === item.id ? 'text-purple-400 font-semibold' : 'text-gray-300'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Mobile Menu Overlay */}
             {isMenuOpen && (
-              <div 
-                className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-                onClick={() => setIsMenuOpen(false)}
-              ></div>
+              <div className="md:hidden bg-dark-secondary border-t border-border">
+                <div className="px-6 py-4 space-y-4">
+                  {navItems.map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`block text-left w-full text-sm font-medium ${
+                        activeSection === item.id ? 'text-accent' : 'text-text-secondary hover:text-text-primary'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </nav>
         );
@@ -298,40 +273,49 @@
       
       // Hero Section Component
       const HeroSection = () => {
-        const scrollToProjects = () => {
-          document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-        };
-        
         return (
-          <section id="home" className="min-h-screen flex items-center justify-center gradient-bg relative overflow-hidden">
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-              <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
-              <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '4s'}}></div>
-            </div>
-            
-            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+          <section id="home" className="min-h-screen flex items-center justify-center relative">
+            <div className="max-w-6xl mx-auto px-6 text-center">
               <div className="animate-fade-in">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text animate-slide-down">
-                  Muhammad Hamza Naeem
+                <h1 className="text-5xl md:text-7xl font-space font-bold mb-6">
+                  <span className="gradient-text">Muhammad</span><br />
+                  <span className="text-text-primary">Hamza Naeem</span>
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-purple-200 animate-slide-up">
-                  Data Scientist | Web & App Developer
+                <p className="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl mx-auto">
+                  Data Scientist & Full-Stack Developer crafting intelligent solutions with data and code
                 </p>
-                <p className="text-lg mb-12 text-purple-100 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: '0.5s'}}>
-                  Turning data into insights and building innovative digital solutions with machine learning and modern technologies
-                </p>
-                <button
-                  onClick={scrollToProjects}
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg glow-effect animate-bounce-slow"
-                  style={{animationDelay: '1s'}}
-                >
-                  View My Work
-                  <svg className="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                  <button
+                    onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+                    className="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-lg font-medium transition-all transform hover:scale-105 animate-pulse-glow"
+                  >
+                    View My Work
+                  </button>
+                  <button
+                    onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                    className="px-8 py-4 border border-border hover:border-accent text-text-primary rounded-lg font-medium transition-all transform hover:scale-105"
+                  >
+                    Get In Touch
+                  </button>
+                </div>
+                <div className="flex justify-center space-x-6">
+                  {[
+                    { name: 'GitHub', url: 'https://github.com', icon: '📧' },
+                    { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' },
+                    { name: 'Kaggle', url: 'https://kaggle.com', icon: '📊' }
+                  ].map((link, index) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 flex items-center justify-center border border-border hover:border-accent rounded-lg transition-all transform hover:scale-110 animate-float"
+                      style={{animationDelay: `${index * 0.2}s`}}
+                    >
+                      <span className="text-xl">{link.icon}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -341,30 +325,34 @@
       // About Section Component
       const AboutSection = () => {
         return (
-          <section id="about" className="py-20 bg-gradient-to-br from-slate-800 to-purple-800">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="about" className="section-padding bg-dark-secondary">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">About Me</h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
+                <h2 className="text-4xl md:text-5xl font-space font-bold mb-6 text-text-primary">About Me</h2>
+                <div className="w-20 h-1 bg-accent mx-auto"></div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="animate-slide-right">
-                  <h3 className="text-2xl font-semibold mb-6 text-purple-400">
-                    From Data Science to Digital Innovation
+                  <h3 className="text-2xl font-space font-semibold mb-6 text-text-primary">
+                    Bridging Data Science & Development
                   </h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-text-secondary mb-6 leading-relaxed">
                     I'm a passionate data scientist with a growing expertise in web and mobile app development. 
                     My unique background allows me to combine analytical thinking with creative problem-solving 
                     to build data-driven applications and intelligent solutions.
                   </p>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-text-secondary mb-8 leading-relaxed">
                     I believe in leveraging the power of machine learning and modern web technologies to create 
                     impactful digital experiences that solve real-world problems.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     {['Python', 'React', 'Machine Learning', 'Node.js', 'TensorFlow', 'TypeScript'].map((tech, index) => (
-                      <span key={tech} className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full text-sm animate-fade-in transform hover:scale-110 transition-all duration-300" style={{animationDelay: `${index * 0.1}s`}}>
+                      <span 
+                        key={tech} 
+                        className="skill-tag px-4 py-2 bg-dark border border-border rounded-lg text-sm text-text-primary"
+                        style={{animationDelay: `${index * 0.1}s`}}
+                      >
                         {tech}
                       </span>
                     ))}
@@ -372,21 +360,24 @@
                 </div>
                 
                 <div className="animate-slide-left">
-                  <div className="glass-effect rounded-lg p-8 shadow-xl glow-effect">
-                    <h4 className="text-xl font-semibold mb-4 text-purple-400">Quick Facts</h4>
-                    <ul className="space-y-3 text-gray-300">
+                  <div className="card-hover bg-dark rounded-xl p-8">
+                    <h4 className="text-xl font-space font-semibold mb-6 text-accent">Experience</h4>
+                    <div className="space-y-6">
                       {[
-                        'Data Science expertise',
-                        'Web & App development skills',
-                        'Machine Learning specialist',
-                        'Full-stack capabilities'
-                      ].map((fact, index) => (
-                        <li key={fact} className="flex items-center animate-slide-up" style={{animationDelay: `${index * 0.2}s`}}>
-                          <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></span>
-                          {fact}
-                        </li>
+                        { title: 'Data Science Projects', desc: 'Machine learning models and data analysis' },
+                        { title: 'Web Applications', desc: 'Full-stack development with modern frameworks' },
+                        { title: 'Mobile Development', desc: 'Cross-platform mobile applications' },
+                        { title: 'AI Integration', desc: 'Implementing AI solutions in web apps' }
+                      ].map((item, index) => (
+                        <div key={item.title} className="flex items-start space-x-4 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
+                          <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <h5 className="font-medium text-text-primary">{item.title}</h5>
+                            <p className="text-sm text-text-secondary">{item.desc}</p>
+                          </div>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -449,13 +440,13 @@
           : projects.filter(project => project.category === filter);
         
         return (
-          <section id="projects" className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="projects" className="section-padding bg-dark">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">My Projects</h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
-                  Here are some of my recent projects that showcase my skills and experience
+                <h2 className="text-4xl md:text-5xl font-space font-bold mb-6 text-text-primary">Projects</h2>
+                <div className="w-20 h-1 bg-accent mx-auto mb-8"></div>
+                <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+                  A collection of projects showcasing my expertise in data science and development
                 </p>
               </div>
               
@@ -465,12 +456,11 @@
                   <button
                     key={category}
                     onClick={() => setFilter(category)}
-                    className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 animate-slide-up ${
+                    className={`px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 ${
                       filter === category
-                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white glow-effect'
-                        : 'glass-effect text-gray-300 hover:bg-purple-600/20'
+                        ? 'bg-accent text-white'
+                        : 'border border-border text-text-secondary hover:border-accent hover:text-text-primary'
                     }`}
-                    style={{animationDelay: `${index * 0.1}s`}}
                   >
                     {category}
                   </button>
@@ -478,24 +468,24 @@
               </div>
               
               {/* Projects Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 gap-8">
                 {filteredProjects.map((project, index) => (
-                  <div key={project.id} className="glass-effect rounded-lg overflow-hidden shadow-xl card-hover animate-slide-up" style={{animationDelay: `${index * 0.2}s`}}>
+                  <div key={project.id} className="card-hover bg-dark-secondary rounded-xl overflow-hidden animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
                     <img 
                       src={project.image} 
                       alt={project.title}
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 text-purple-400">
+                      <h3 className="text-xl font-space font-semibold mb-3 text-text-primary">
                         {project.title}
                       </h3>
-                      <p className="text-gray-300 mb-4 leading-relaxed">
+                      <p className="text-text-secondary mb-4 leading-relaxed">
                         {project.description}
                       </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-6">
                         {project.tech.map(tech => (
-                          <span key={tech} className="px-3 py-1 bg-gradient-to-r from-purple-600/50 to-blue-600/50 rounded-full text-sm">
+                          <span key={tech} className="px-3 py-1 bg-dark border border-border rounded-md text-xs text-text-secondary">
                             {tech}
                           </span>
                         ))}
@@ -503,13 +493,13 @@
                       <div className="flex gap-4">
                         <a 
                           href={project.demo}
-                          className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all flex-1 text-center transform hover:scale-105"
+                          className="flex-1 px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-lg transition-all text-center font-medium"
                         >
                           Live Demo
                         </a>
                         <a 
                           href={project.github}
-                          className="px-4 py-2 glass-effect hover:bg-purple-600/20 rounded-lg transition-all flex-1 text-center transform hover:scale-105"
+                          className="flex-1 px-4 py-2 border border-border hover:border-accent text-text-primary rounded-lg transition-all text-center font-medium"
                         >
                           GitHub
                         </a>
@@ -528,64 +518,44 @@
         const skillCategories = [
           {
             category: 'Data Science',
-            skills: [
-              { name: 'Python', level: 95 },
-              { name: 'Machine Learning', level: 90 },
-              { name: 'TensorFlow', level: 85 },
-              { name: 'Pandas', level: 92 }
-            ]
+            skills: ['Python', 'Machine Learning', 'TensorFlow', 'Pandas', 'NumPy', 'Scikit-learn', 'Jupyter', 'Data Visualization']
           },
           {
             category: 'Web Development',
-            skills: [
-              { name: 'React', level: 88 },
-              { name: 'Node.js', level: 82 },
-              { name: 'TypeScript', level: 85 },
-              { name: 'Tailwind CSS', level: 90 }
-            ]
+            skills: ['React', 'JavaScript', 'TypeScript', 'Node.js', 'Express', 'HTML/CSS', 'Tailwind CSS', 'MongoDB']
           },
           {
             category: 'Tools & Platforms',
-            skills: [
-              { name: 'Git', level: 95 },
-              { name: 'Docker', level: 78 },
-              { name: 'AWS', level: 75 },
-              { name: 'Jupyter', level: 92 }
-            ]
+            skills: ['Git', 'Docker', 'AWS', 'Vercel', 'Figma', 'VS Code', 'Linux', 'API Development']
           }
         ];
         
         return (
-          <section id="skills" className="py-20 bg-gradient-to-br from-slate-800 to-purple-800">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="skills" className="section-padding bg-dark-secondary">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">Skills & Expertise</h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
-                  Technologies and tools I use to transform data into insights and build innovative applications
+                <h2 className="text-4xl md:text-5xl font-space font-bold mb-6 text-text-primary">Skills</h2>
+                <div className="w-20 h-1 bg-accent mx-auto mb-8"></div>
+                <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+                  Technologies and tools I use to bring ideas to life
                 </p>
               </div>
               
               <div className="grid md:grid-cols-3 gap-8">
                 {skillCategories.map((category, catIndex) => (
-                  <div key={category.category} className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: `${catIndex * 0.2}s`}}>
-                    <h3 className="text-2xl font-semibold mb-6 text-purple-400 text-center">
+                  <div key={category.category} className="card-hover bg-dark rounded-xl p-6 animate-slide-up" style={{animationDelay: `${catIndex * 0.1}s`}}>
+                    <h3 className="text-xl font-space font-semibold mb-6 text-accent text-center">
                       {category.category}
                     </h3>
-                    <div className="space-y-4">
+                    <div className="flex flex-wrap gap-3">
                       {category.skills.map((skill, skillIndex) => (
-                        <div key={skill.name} className="skill-item animate-fade-in" style={{animationDelay: `${(catIndex * 0.2) + (skillIndex * 0.1)}s`}}>
-                          <div className="flex justify-between mb-2">
-                            <span className="text-gray-300">{skill.name}</span>
-                            <span className="text-purple-400">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-600/50 rounded-full h-3">
-                            <div 
-                              className="bg-gradient-to-r from-purple-500 to-blue-500 h-3 rounded-full transition-all duration-1000 animate-pulse-glow"
-                              style={{ width: `${skill.level}%` }}
-                            ></div>
-                          </div>
-                        </div>
+                        <span 
+                          key={skill} 
+                          className="skill-tag px-3 py-2 bg-dark-secondary border border-border rounded-lg text-sm text-text-primary animate-fade-in" 
+                          style={{animationDelay: `${(catIndex * 0.1) + (skillIndex * 0.05)}s`}}
+                        >
+                          {skill}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -612,7 +582,6 @@
         };
         
         const handleSubmit = () => {
-          // Placeholder action - in a real application, this would send the form data
           alert('Thank you for your message! I\'ll get back to you soon.');
           setFormData({ name: '', email: '', message: '' });
         };
@@ -625,58 +594,57 @@
         ];
         
         return (
-          <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="contact" className="section-padding bg-dark">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-slide-down">Get In Touch</h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8 animate-slide-up"></div>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
-                  Let's collaborate on data science projects or discuss innovative app development ideas
+                <h2 className="text-4xl md:text-5xl font-space font-bold mb-6 text-text-primary">Get In Touch</h2>
+                <div className="w-20 h-1 bg-accent mx-auto mb-8"></div>
+                <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+                  Let's collaborate on data science projects or discuss innovative development ideas
                 </p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid lg:grid-cols-2 gap-12">
                 {/* Contact Form */}
-                <div className="glass-effect rounded-lg p-8 shadow-xl glow-effect animate-slide-right">
-                  <h3 className="text-2xl font-semibold mb-6 text-purple-400">Send a Message</h3>
+                <div className="card-hover bg-dark-secondary rounded-xl p-8 animate-slide-right">
+                  <h3 className="text-2xl font-space font-semibold mb-6 text-text-primary">Send a Message</h3>
                   <div className="space-y-6">
-                    <div className="animate-slide-up" style={{animationDelay: '0.1s'}}>
-                      <label className="block text-gray-300 mb-2">Name</label>
+                    <div>
+                      <label className="block text-text-secondary mb-2 font-medium">Name</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white transition-all duration-300"
+                        className="w-full px-4 py-3 bg-dark border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent text-text-primary transition-all"
                         placeholder="Your name"
                       />
                     </div>
-                    <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
-                      <label className="block text-gray-300 mb-2">Email</label>
+                    <div>
+                      <label className="block text-text-secondary mb-2 font-medium">Email</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white transition-all duration-300"
+                        className="w-full px-4 py-3 bg-dark border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent text-text-primary transition-all"
                         placeholder="your.email@example.com"
                       />
                     </div>
-                    <div className="animate-slide-up" style={{animationDelay: '0.3s'}}>
-                      <label className="block text-gray-300 mb-2">Message</label>
+                    <div>
+                      <label className="block text-text-secondary mb-2 font-medium">Message</label>
                       <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         rows="5"
-                        className="w-full px-4 py-3 glass-effect border border-purple-500/30 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white resize-none transition-all duration-300"
+                        className="w-full px-4 py-3 bg-dark border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent text-text-primary resize-none transition-all"
                         placeholder="Tell me about your project..."
                       ></textarea>
                     </div>
                     <button
                       onClick={handleSubmit}
-                      className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all font-semibold transform hover:scale-105 glow-effect animate-slide-up"
-                      style={{animationDelay: '0.4s'}}
+                      className="w-full py-3 bg-accent hover:bg-accent-hover text-white rounded-lg transition-all font-medium transform hover:scale-105"
                     >
                       Send Message
                     </button>
@@ -685,20 +653,20 @@
                 
                 {/* Contact Info */}
                 <div className="space-y-8 animate-slide-left">
-                  <div className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: '0.1s'}}>
-                    <h3 className="text-xl font-semibold mb-4 text-purple-400">Let's Connect</h3>
-                    <p className="text-gray-300 mb-6">
+                  <div className="card-hover bg-dark-secondary rounded-xl p-6">
+                    <h3 className="text-xl font-space font-semibold mb-4 text-accent">Let's Connect</h3>
+                    <p className="text-text-secondary mb-6">
                       Whether you're interested in data science collaboration, web development projects, 
                       or just want to discuss the latest in machine learning and app development.
                     </p>
-                    <div className="space-y-3">
-                      <div className="flex items-center animate-slide-right" style={{animationDelay: '0.2s'}}>
-                        <span className="text-2xl mr-3">📍</span>
-                        <span className="text-gray-300">Pakistan</span>
+                    <div className="space-y-4">
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-4">📍</span>
+                        <span className="text-text-secondary">Pakistan</span>
                       </div>
-                      <div className="flex items-center animate-slide-right" style={{animationDelay: '0.3s'}}>
-                        <span className="text-2xl mr-3">📧</span>
-                        <a href="mailto:hamzanaeem832@gmail.com" className="text-purple-400 hover:text-purple-300 transition-colors">
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-4">📧</span>
+                        <a href="mailto:hamzanaeem832@gmail.com" className="text-accent hover:text-accent-hover transition-colors">
                           hamzanaeem832@gmail.com
                         </a>
                       </div>
@@ -706,8 +674,8 @@
                   </div>
                   
                   {/* Social Links */}
-                  <div className="glass-effect rounded-lg p-6 shadow-xl glow-effect animate-slide-up" style={{animationDelay: '0.4s'}}>
-                    <h3 className="text-xl font-semibold mb-4 text-purple-400">Follow Me</h3>
+                  <div className="card-hover bg-dark-secondary rounded-xl p-6">
+                    <h3 className="text-xl font-space font-semibold mb-4 text-accent">Follow Me</h3>
                     <div className="grid grid-cols-2 gap-4">
                       {socialLinks.map((link, index) => (
                         <a
@@ -715,11 +683,10 @@
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center p-3 glass-effect rounded-lg hover:bg-purple-600/20 transition-all transform hover:scale-105 animate-slide-up"
-                          style={{animationDelay: `${0.5 + (index * 0.1)}s`}}
+                          className="flex items-center p-3 border border-border rounded-lg hover:border-accent transition-all transform hover:scale-105"
                         >
                           <span className="text-2xl mr-3">{link.icon}</span>
-                          <span className="text-gray-300">{link.name}</span>
+                          <span className="text-text-secondary">{link.name}</span>
                         </a>
                       ))}
                     </div>
@@ -734,10 +701,10 @@
       // Footer Component
       const Footer = () => {
         return (
-          <footer className="py-8 bg-gradient-to-r from-slate-800 to-purple-800 border-t border-purple-500/20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <footer className="py-8 bg-dark-secondary border-t border-border">
+            <div className="max-w-6xl mx-auto px-6">
               <div className="flex flex-col md:flex-row justify-between items-center">
-                <div className="text-gray-400 mb-4 md:mb-0 animate-fade-in">
+                <div className="text-text-secondary mb-4 md:mb-0">
                   © 2024 Muhammad Hamza Naeem. All rights reserved.
                 </div>
                 <div className="flex space-x-6">
@@ -745,8 +712,8 @@
                     { name: 'GitHub', url: 'https://github.com' },
                     { name: 'LinkedIn', url: 'https://linkedin.com' },
                     { name: 'Kaggle', url: 'https://kaggle.com' }
-                  ].map((link, index) => (
-                    <a key={link.name} href={link.url} className="text-gray-400 hover:text-purple-400 transition-all duration-300 transform hover:scale-110 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
+                  ].map((link) => (
+                    <a key={link.name} href={link.url} className="text-text-secondary hover:text-accent transition-all">
                       {link.name}
                     </a>
                   ))}
@@ -775,18 +742,5 @@
       // Render the app
       ReactDOM.render(<App />, document.getElementById('root'));
     </script>
-    
-    <!-- 
-    VERCEL DEPLOYMENT INSTRUCTIONS:
-    
-    1. Create a new repository on GitHub
-    2. Push this project to your GitHub repository
-    3. Go to https://vercel.com and sign up/login
-    4. Click "New Project" and import your GitHub repository
-    5. Vercel will automatically detect this as a static site
-    6. Click "Deploy" and your portfolio will be live!
-    
-    The vercel.json file is included for additional configuration.
-    -->
   </body>
 </html>
