@@ -1,24 +1,709 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>glow-code-showcase-54</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="glow-code-showcase-54" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <title>John Doe - Full-Stack Developer Portfolio</title>
+    <meta name="description" content="Full-Stack Developer building innovative solutions with React, Node.js, and modern web technologies" />
+    <meta name="author" content="John Doe" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://johndoe-portfolio.vercel.app/" />
+    <meta property="og:title" content="John Doe - Full-Stack Developer Portfolio" />
+    <meta property="og:description" content="Full-Stack Developer building innovative solutions" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://johndoe-portfolio.vercel.app/" />
+    <meta property="twitter:title" content="John Doe - Full-Stack Developer Portfolio" />
+    <meta property="twitter:description" content="Full-Stack Developer building innovative solutions" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'inter': ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.6s ease-out',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- React and Babel -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .skill-item {
+        transition: all 0.3s ease;
+      }
+      
+      .skill-item:hover {
+        transform: scale(1.05);
+      }
+      
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+      
+      .smooth-scroll {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="bg-gray-900 text-white smooth-scroll">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      
+      // Navigation Component
+      const Navigation = () => {
+        const [isMenuOpen, setIsMenuOpen] = useState(false);
+        const [activeSection, setActiveSection] = useState('home');
+        
+        useEffect(() => {
+          const handleScroll = () => {
+            const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+              const element = document.getElementById(section);
+              if (element) {
+                const offsetTop = element.offsetTop;
+                const height = element.offsetHeight;
+                
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+                  setActiveSection(section);
+                }
+              }
+            });
+          };
+          
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+        
+        const scrollToSection = (sectionId) => {
+          document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+          setIsMenuOpen(false);
+        };
+        
+        const navItems = [
+          { id: 'home', label: 'Home' },
+          { id: 'about', label: 'About' },
+          { id: 'projects', label: 'Projects' },
+          { id: 'skills', label: 'Skills' },
+          { id: 'contact', label: 'Contact' }
+        ];
+        
+        return (
+          <nav className="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-700">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center py-4">
+                <div className="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
+                  JD
+                </div>
+                
+                {/* Desktop Menu */}
+                <div className="hidden md:flex space-x-8">
+                  {navItems.map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`hover:text-blue-400 transition-colors ${
+                        activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Mobile Menu Button */}
+                <button
+                  className="md:hidden"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+                    <span className={`block h-0.5 w-6 bg-white transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                    <span className={`block h-0.5 w-6 bg-white transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`block h-0.5 w-6 bg-white transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                  </div>
+                </button>
+              </div>
+            </div>
+            
+            {/* Mobile Menu */}
+            <div className={`md:hidden mobile-menu ${isMenuOpen ? 'active' : ''} fixed top-0 right-0 h-full w-64 bg-gray-800 shadow-xl`}>
+              <div className="flex flex-col pt-20 px-6 space-y-6">
+                {navItems.map(item => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`text-left hover:text-blue-400 transition-colors ${
+                      activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            {/* Mobile Menu Overlay */}
+            {isMenuOpen && (
+              <div 
+                className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+                onClick={() => setIsMenuOpen(false)}
+              ></div>
+            )}
+          </nav>
+        );
+      };
+      
+      // Hero Section Component
+      const HeroSection = () => {
+        const scrollToProjects = () => {
+          document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        return (
+          <section id="home" className="min-h-screen flex items-center justify-center gradient-bg">
+            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+              <div className="animate-fade-in">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                  John Doe
+                </h1>
+                <p className="text-xl md:text-2xl mb-8 text-blue-100">
+                  Full-Stack Developer | Building Innovative Solutions
+                </p>
+                <p className="text-lg mb-12 text-blue-50 max-w-2xl mx-auto">
+                  Passionate about creating exceptional digital experiences with modern technologies
+                </p>
+                <button
+                  onClick={scrollToProjects}
+                  className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  View My Work
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      // About Section Component
+      const AboutSection = () => {
+        return (
+          <section id="about" className="py-20 bg-gray-800">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
+                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="animate-slide-up">
+                  <h3 className="text-2xl font-semibold mb-6 text-blue-400">
+                    Crafting Digital Solutions
+                  </h3>
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    I'm a passionate full-stack developer with over 5 years of experience creating 
+                    robust web applications and innovative digital solutions. My expertise spans 
+                    from front-end frameworks to backend architectures.
+                  </p>
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    I believe in writing clean, maintainable code and staying up-to-date with the 
+                    latest technologies to deliver exceptional user experiences.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {['React', 'Node.js', 'TypeScript', 'Python'].map(tech => (
+                      <span key={tech} className="px-4 py-2 bg-gray-700 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="animate-fade-in">
+                  <div className="bg-gray-700 rounded-lg p-8 shadow-xl">
+                    <h4 className="text-xl font-semibold mb-4 text-blue-400">Quick Facts</h4>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        5+ years of development experience
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        50+ projects completed
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        Full-stack expertise
+                      </li>
+                      <li className="flex items-center">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        Open source contributor
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      // Projects Section Component
+      const ProjectsSection = () => {
+        const [filter, setFilter] = useState('All');
+        
+        const projects = [
+          {
+            id: 1,
+            title: 'E-Commerce Platform',
+            description: 'A full-featured online shopping platform with user authentication, payment processing, and admin dashboard.',
+            category: 'Web Development',
+            tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+            image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=300&fit=crop',
+            demo: '#',
+            github: '#'
+          },
+          {
+            id: 2,
+            title: 'Task Management App',
+            description: 'A collaborative project management tool with real-time updates, team collaboration, and progress tracking.',
+            category: 'Web Development',
+            tech: ['Vue.js', 'Express', 'PostgreSQL', 'Socket.io'],
+            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop',
+            demo: '#',
+            github: '#'
+          },
+          {
+            id: 3,
+            title: 'Weather Mobile App',
+            description: 'A cross-platform mobile application providing detailed weather forecasts with beautiful UI and offline support.',
+            category: 'Mobile Apps',
+            tech: ['React Native', 'Redux', 'Weather API'],
+            image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop',
+            demo: '#',
+            github: '#'
+          },
+          {
+            id: 4,
+            title: 'AI Dashboard',
+            description: 'An analytics dashboard powered by machine learning algorithms for data visualization and predictive insights.',
+            category: 'Data Science',
+            tech: ['Python', 'Django', 'TensorFlow', 'D3.js'],
+            image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop',
+            demo: '#',
+            github: '#'
+          }
+        ];
+        
+        const categories = ['All', 'Web Development', 'Mobile Apps', 'Data Science'];
+        
+        const filteredProjects = filter === 'All' 
+          ? projects 
+          : projects.filter(project => project.category === filter);
+        
+        return (
+          <section id="projects" className="py-20 bg-gray-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">My Projects</h2>
+                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                  Here are some of my recent projects that showcase my skills and experience
+                </p>
+              </div>
+              
+              {/* Filter Buttons */}
+              <div className="flex flex-wrap justify-center gap-4 mb-12">
+                {categories.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setFilter(category)}
+                    className={`px-6 py-3 rounded-full transition-all ${
+                      filter === category
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Projects Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects.map(project => (
+                  <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-xl card-hover">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-3 text-blue-400">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-300 mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech.map(tech => (
+                          <span key={tech} className="px-3 py-1 bg-gray-700 rounded-full text-sm">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex gap-4">
+                        <a 
+                          href={project.demo}
+                          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex-1 text-center"
+                        >
+                          Live Demo
+                        </a>
+                        <a 
+                          href={project.github}
+                          className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors flex-1 text-center"
+                        >
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      // Skills Section Component
+      const SkillsSection = () => {
+        const skillCategories = [
+          {
+            category: 'Frontend',
+            skills: [
+              { name: 'React', level: 90 },
+              { name: 'Vue.js', level: 85 },
+              { name: 'TypeScript', level: 88 },
+              { name: 'Tailwind CSS', level: 92 }
+            ]
+          },
+          {
+            category: 'Backend',
+            skills: [
+              { name: 'Node.js', level: 90 },
+              { name: 'Python', level: 85 },
+              { name: 'PostgreSQL', level: 80 },
+              { name: 'MongoDB', level: 82 }
+            ]
+          },
+          {
+            category: 'Tools',
+            skills: [
+              { name: 'Git', level: 95 },
+              { name: 'Docker', level: 78 },
+              { name: 'AWS', level: 75 },
+              { name: 'Vercel', level: 88 }
+            ]
+          }
+        ];
+        
+        return (
+          <section id="skills" className="py-20 bg-gray-800">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
+                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                  Technologies and tools I work with to bring ideas to life
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                {skillCategories.map(category => (
+                  <div key={category.category} className="bg-gray-700 rounded-lg p-6 shadow-xl">
+                    <h3 className="text-2xl font-semibold mb-6 text-blue-400 text-center">
+                      {category.category}
+                    </h3>
+                    <div className="space-y-4">
+                      {category.skills.map(skill => (
+                        <div key={skill.name} className="skill-item">
+                          <div className="flex justify-between mb-2">
+                            <span className="text-gray-300">{skill.name}</span>
+                            <span className="text-blue-400">{skill.level}%</span>
+                          </div>
+                          <div className="w-full bg-gray-600 rounded-full h-3">
+                            <div 
+                              className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000"
+                              style={{ width: `${skill.level}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      // Contact Section Component
+      const ContactSection = () => {
+        const [formData, setFormData] = useState({
+          name: '',
+          email: '',
+          message: ''
+        });
+        
+        const handleInputChange = (e) => {
+          setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+          });
+        };
+        
+        const handleSubmit = () => {
+          // Placeholder action - in a real application, this would send the form data
+          alert('Thank you for your message! I\'ll get back to you soon.');
+          setFormData({ name: '', email: '', message: '' });
+        };
+        
+        const socialLinks = [
+          { name: 'GitHub', url: 'https://github.com', icon: '🐙' },
+          { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' },
+          { name: 'Twitter', url: 'https://twitter.com', icon: '🐦' },
+          { name: 'Email', url: 'mailto:john@example.com', icon: '📧' }
+        ];
+        
+        return (
+          <section id="contact" className="py-20 bg-gray-900">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
+                <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                  I'm always open to discussing new opportunities and interesting projects
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* Contact Form */}
+                <div className="bg-gray-800 rounded-lg p-8 shadow-xl">
+                  <h3 className="text-2xl font-semibold mb-6 text-blue-400">Send a Message</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-gray-300 mb-2">Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-300 mb-2">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-300 mb-2">Message</label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows="5"
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white resize-none"
+                        placeholder="Tell me about your project..."
+                      ></textarea>
+                    </div>
+                    <button
+                      onClick={handleSubmit}
+                      className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors font-semibold"
+                    >
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Contact Info */}
+                <div className="space-y-8">
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
+                    <h3 className="text-xl font-semibold mb-4 text-blue-400">Let's Connect</h3>
+                    <p className="text-gray-300 mb-6">
+                      Feel free to reach out if you're looking for a developer, have a question, 
+                      or just want to connect.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-3">📍</span>
+                        <span className="text-gray-300">San Francisco, CA</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-3">📧</span>
+                        <a href="mailto:john@example.com" className="text-blue-400 hover:text-blue-300">
+                          john@example.com
+                        </a>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-3">📱</span>
+                        <span className="text-gray-300">+1 (555) 123-4567</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Social Links */}
+                  <div className="bg-gray-800 rounded-lg p-6 shadow-xl">
+                    <h3 className="text-xl font-semibold mb-4 text-blue-400">Follow Me</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {socialLinks.map(link => (
+                        <a
+                          key={link.name}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
+                        >
+                          <span className="text-2xl mr-3">{link.icon}</span>
+                          <span className="text-gray-300">{link.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      // Footer Component
+      const Footer = () => {
+        return (
+          <footer className="py-8 bg-gray-800 border-t border-gray-700">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <div className="text-gray-400 mb-4 md:mb-0">
+                  © 2024 John Doe. All rights reserved.
+                </div>
+                <div className="flex space-x-6">
+                  <a href="https://github.com" className="text-gray-400 hover:text-white transition-colors">
+                    GitHub
+                  </a>
+                  <a href="https://linkedin.com" className="text-gray-400 hover:text-white transition-colors">
+                    LinkedIn
+                  </a>
+                  <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors">
+                    Twitter
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        );
+      };
+      
+      // Main App Component
+      const App = () => {
+        return (
+          <div className="min-h-screen">
+            <Navigation />
+            <HeroSection />
+            <AboutSection />
+            <ProjectsSection />
+            <SkillsSection />
+            <ContactSection />
+            <Footer />
+          </div>
+        );
+      };
+      
+      // Render the app
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+    
+    <!-- 
+    VERCEL DEPLOYMENT INSTRUCTIONS:
+    
+    1. Create a new repository on GitHub
+    2. Push this project to your GitHub repository
+    3. Go to https://vercel.com and sign up/login
+    4. Click "New Project" and import your GitHub repository
+    5. Vercel will automatically detect this as a static site
+    6. Click "Deploy" and your portfolio will be live!
+    
+    The vercel.json file is included for additional configuration.
+    -->
   </body>
 </html>
